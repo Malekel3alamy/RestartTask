@@ -170,7 +170,8 @@ fun TargetContent(
         }
 
 if(skipEnables){
-BottomNavigationBar(false)
+
+  BottomNavigationBar(false)
 }else{
     ShowSkipText(){
         skipEnables = true

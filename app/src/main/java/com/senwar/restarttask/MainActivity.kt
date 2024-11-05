@@ -34,9 +34,8 @@ import com.senwar.restarttask.ui.theme.RestartTaskTheme
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContent {
 
+        setContent {
 
             if (getShared()){
                 BottomNavigationBar(false)
@@ -44,17 +43,13 @@ class MainActivity : ComponentActivity() {
                 BottomNavigationBar(true)
                 share(myValue = true)
             }
-
         }
     }
-
-
     // save boolean value to shared preferences
     @Composable
     fun share(myValue:Boolean){
         val context = LocalContext.current
         val sharedPreferences = remember { context.getSharedPreferences("my_prefs", Context.MODE_PRIVATE) }
-
 
 
         // Update Shared Preferences when myValue changes
@@ -71,8 +66,6 @@ class MainActivity : ComponentActivity() {
         val sharedPreferences = remember { context.getSharedPreferences("my_prefs", Context.MODE_PRIVATE) }
          return  sharedPreferences.getBoolean("firstVisit",false)
     }
-
-    
 
 }
 

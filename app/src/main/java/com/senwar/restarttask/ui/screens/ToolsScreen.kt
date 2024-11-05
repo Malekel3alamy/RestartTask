@@ -21,20 +21,11 @@ fun ToolsScreen(){
 
     Column(
         modifier = Modifier
-            .fillMaxSize(),
+            .fillMaxSize()
+            .background(Color.Cyan),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-
-        Row (
-            modifier = Modifier
-                .padding(start = 25.dp, top = 50.dp),
-            horizontalArrangement = Arrangement.Start,
-            verticalAlignment = Alignment.Top
-        ){
-          //  com.senwar.restarttask.ui.Button()
-        }
-
 
         Text(
             text = "Tools Screen",

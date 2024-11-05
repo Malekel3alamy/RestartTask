@@ -24,6 +24,7 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
 import com.senwar.restarttask.showcase.ShowSkipText
+import com.senwar.restarttask.ui.bottomnavigation.BottomNavigationBar
 import com.senwar.spotlight.ShowCaseProperty
 import com.senwar.spotlight.ShowCaseText
 import com.senwar.spotlight.getOutCircleCenter
@@ -114,6 +115,9 @@ fun TargetContent(
 
     val dys = animatables.map { it.value }
     Box {
+        var skipEnables by remember {
+            mutableStateOf(false)
+        }
         Canvas(
             modifier = Modifier
                 .fillMaxSize()
@@ -128,47 +132,53 @@ fun TargetContent(
         ) {
 
 
-            drawCircle(
-                color = backgroundColor,
-                center = outerOffset,
-                radius = outerRadius * outerAnimatable.value * 3,
-                alpha = 0.9f
-            )
-            dys.forEach { dy ->
+            if (skipEnables) {
+
+            }else{
                 drawCircle(
-                    color = Color.White,
-                    radius = maxDimension * dy * 2f,
+                    color = backgroundColor,
+                    center = outerOffset,
+                    radius = outerRadius * outerAnimatable.value * 3,
+                    alpha = 0.9f
+                )
+                dys.forEach { dy ->
+                    drawCircle(
+                        color = Color.White,
+                        radius = maxDimension * dy * 2f,
+                        center = targetRect.center,
+                        alpha = 1 - dy
+                    )
+                }
+
+                drawCircle(
+                    color = Color.Transparent,
+                    radius = targetRadius,
                     center = targetRect.center,
-                    alpha = 1 - dy
+                    blendMode = BlendMode.Clear,
                 )
             }
 
-            drawCircle(
-                color = Color.Transparent,
-                radius = targetRadius,
-                center = targetRect.center,
-                blendMode = BlendMode.Clear,
-            )
-        }
-var skipEnables by remember {
-    mutableStateOf(false)
-}
 
-        ShowSkipText(){
+        }
+
+if(skipEnables){
+BottomNavigationBar(false)
+}else{
+    ShowSkipText(){
         skipEnables = true
 
-        }
-        if (skipEnables) {
+    }
 
-        }
 
-        ShowCaseText(
-            currentTarget = target,
-            boundsInParent = targetRect,
-            targetRadius = targetRadius
-        ) {
-            textCoordinate = it
-        }
+    ShowCaseText(
+        currentTarget = target,
+        boundsInParent = targetRect,
+        targetRadius = targetRadius
+    ) {
+        textCoordinate = it
+    }
+}
+
     }
 }
 

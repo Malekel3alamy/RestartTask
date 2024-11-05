@@ -34,7 +34,7 @@ import com.senwar.spotlight.ShowCaseProperty
 
 
 @Composable
-fun BottomNavigationBar(){
+fun BottomNavigationBar(caseViewEnabled:Boolean){
 
     var navigationTutorialFinished by remember { mutableStateOf(false)
     }
@@ -95,22 +95,21 @@ fun BottomNavigationBar(){
      }
  ){ innerPadding ->
 
-     ContentScreen(modifier = Modifier.padding(innerPadding),selectedIndex)
+     ContentScreen(caseViewEnabled,modifier = Modifier.padding(innerPadding),selectedIndex)
 
      if (navigationTutorialFinished){
          selectedIndex = 2
-         ContentScreen(selectedIndex = 2)
+         ContentScreen(caseViewEnabled,selectedIndex = 2)
      }
 
-     
-
-
-
  }
-    ShowCaseView(targets = targets) {
-        navigationTutorialFinished = true
+    if (caseViewEnabled){
+        ShowCaseView(targets = targets) {
+            navigationTutorialFinished = true
 
+        }
     }
+
 
 
 
@@ -119,12 +118,12 @@ fun BottomNavigationBar(){
 
 
 @Composable
-fun ContentScreen(modifier: Modifier = Modifier, selectedIndex: Int){
+fun ContentScreen(caseViewEnabled: Boolean,modifier: Modifier = Modifier, selectedIndex: Int){
 
      when(selectedIndex){
          0 -> HomeScreen()
          1 -> ConnectScreen()
-         2 -> QuestionsScreen()
+         2 -> QuestionsScreen(caseViewEnabled )
          3 -> ToolsScreen()
          4 -> ProfileScreen()
      }

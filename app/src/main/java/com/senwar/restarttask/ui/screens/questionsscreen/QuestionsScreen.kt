@@ -37,9 +37,8 @@ import com.senwar.restarttask.ui.ButtonFilter
 import com.senwar.restarttask.ui.theme.fontFamily
 import com.senwar.spotlight.ShowCaseProperty
 
-@Preview(showSystemUi = true)
 @Composable
-fun QuestionsScreen() {
+fun QuestionsScreen(caseViewEnabled:Boolean) {
     val context = LocalContext.current
 
     val targets = remember { mutableStateMapOf<String, ShowCaseProperty>() }
@@ -112,9 +111,11 @@ fun QuestionsScreen() {
 
        }
    }
-    ShowCaseView(targets = targets) {
-        Toast.makeText(context, "App Intro finished!", Toast.LENGTH_SHORT).show()
+    if (caseViewEnabled){
+        ShowCaseView(targets = targets) {
+            Toast.makeText(context, "App Intro finished!", Toast.LENGTH_SHORT).show()
 
+        }
     }
 }
 

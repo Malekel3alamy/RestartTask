@@ -42,7 +42,7 @@ class MainActivity : ComponentActivity() {
                 BottomNavigationBar(false)
             }else{
                 BottomNavigationBar(true)
-              //  share(myValue = true)
+                share(myValue = true)
             }
 
         }

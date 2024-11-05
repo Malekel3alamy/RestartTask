@@ -117,16 +117,12 @@ fun QuestionsScreen(caseViewEnabled:Boolean,navController: NavController) {
    }
 
     if (navigationTutorialFinished){
-      //  ContentScreen(caseViewEnabled = true, selectedIndex = 3)
+
     }
     if (caseViewEnabled){
         ShowCaseView(targets = targets) {
             navigationTutorialFinished = true
-            navController.navigate("tools"){
-                popUpTo(navController.graph.findStartDestination().id) {
-                    inclusive = true
-                }
-            }
+            navController.navigate("tools")
 
         }
     }

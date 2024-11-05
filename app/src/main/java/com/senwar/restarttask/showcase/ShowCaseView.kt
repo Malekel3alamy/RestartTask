@@ -23,6 +23,7 @@ import androidx.compose.ui.layout.positionInRoot
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
+import androidx.navigation.compose.rememberNavController
 import com.senwar.restarttask.showcase.ShowSkipText
 import com.senwar.restarttask.ui.bottomnavigation.BottomNavigationBar
 import com.senwar.spotlight.ShowCaseProperty
@@ -48,6 +49,7 @@ fun ShowCaseView(
         TargetContent(target = it, backgroundColor = backgroundColor) {
             if (++currentTargetIndex >= uniqueTargets.size) {
                 onShowCaseCompleted()
+
             }
         }
     }

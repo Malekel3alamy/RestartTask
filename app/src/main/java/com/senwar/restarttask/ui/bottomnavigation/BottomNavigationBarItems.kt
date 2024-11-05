@@ -17,7 +17,7 @@ import com.senwar.restarttask.R
 data class BottomNavItem(val index:Int,val route :String, val icon : Int, val label :String, val contentDescription :String)
 
 
-  val screenList = listOf(BottomNavItem(1,"home", R.drawable.home_3x,"Home","You will find your study plan here"),
+  val screenList = listOf(BottomNavItem(1,"home", R.drawable.home_3x,"home","You will find your study plan here"),
       BottomNavItem(2,"connect", R.drawable.chat_3x,"Connect","Here you will find study partners and people to connect with"),
       BottomNavItem(3,"questions",R.drawable.help,"Questions","Here are the questions with model answers"),
       BottomNavItem(4,"tools",R.drawable.pen,"Tools","Tools"),

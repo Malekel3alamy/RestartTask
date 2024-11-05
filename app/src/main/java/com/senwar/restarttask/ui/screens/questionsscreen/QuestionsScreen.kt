@@ -31,15 +31,18 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.NavGraph.Companion.findStartDestination
+import androidx.navigation.compose.currentBackStackEntryAsState
 import com.jetpack.showcaseview.ShowCaseView
 import com.senwar.restarttask.R
 import com.senwar.restarttask.ui.ButtonFilter
-import com.senwar.restarttask.ui.bottomnavigation.ContentScreen
+import com.senwar.restarttask.ui.bottomnavigation.BottomNavigationBar
 import com.senwar.restarttask.ui.theme.fontFamily
 import com.senwar.spotlight.ShowCaseProperty
 
 @Composable
-fun QuestionsScreen(caseViewEnabled:Boolean) {
+fun QuestionsScreen(caseViewEnabled:Boolean,navController: NavController) {
 
     var navigationTutorialFinished by remember { mutableStateOf(false) }
 
@@ -79,7 +82,7 @@ fun QuestionsScreen(caseViewEnabled:Boolean) {
                ){
 
                item {
-                   SpecialCardItem (modifier =  Modifier
+                   SpecialCardItem (modifier = Modifier
                        .size(width = 220.dp, height = 130.dp)
                        .padding(15.dp)
                        .onGloballyPositioned { coordinates ->
@@ -114,11 +117,17 @@ fun QuestionsScreen(caseViewEnabled:Boolean) {
    }
 
     if (navigationTutorialFinished){
-        ContentScreen(caseViewEnabled,selectedIndex = 3)
+      //  ContentScreen(caseViewEnabled = true, selectedIndex = 3)
     }
     if (caseViewEnabled){
         ShowCaseView(targets = targets) {
             navigationTutorialFinished = true
+            navController.navigate("tools"){
+                popUpTo(navController.graph.findStartDestination().id) {
+                    inclusive = true
+                }
+            }
+
         }
     }
 }

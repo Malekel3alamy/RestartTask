@@ -31,15 +31,16 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.jetpack.showcaseview.ShowCaseView
 import com.senwar.restarttask.R
-import com.senwar.restarttask.ui.bottomnavigation.ContentScreen
+import com.senwar.restarttask.ui.bottomnavigation.BottomNavigationBar
 import com.senwar.restarttask.ui.theme.fontFamily
 import com.senwar.spotlight.ShowCaseProperty
 
 
 @Composable
-fun ToolsScreen(caseViewEnabled:Boolean){
+fun ToolsScreen(caseViewEnabled:Boolean,navController: NavController){
     val context = LocalContext.current
 
     var isTutorialFinished by remember { mutableStateOf(false) }
@@ -89,14 +90,16 @@ fun ToolsScreen(caseViewEnabled:Boolean){
            }
        }
    }
+
     if (isTutorialFinished){
-        ContentScreen(false,selectedIndex = 3)
+
     }
     if (caseViewEnabled){
         ShowCaseView(targets = targets) {
 
             Toast.makeText(context, "App Intro finished!", Toast.LENGTH_SHORT).show()
              isTutorialFinished = true
+            navController.navigate("home")
         }
     }
 }

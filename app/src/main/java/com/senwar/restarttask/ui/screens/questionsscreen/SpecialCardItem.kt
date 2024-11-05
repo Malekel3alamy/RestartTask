@@ -1,6 +1,7 @@
 package com.senwar.restarttask.ui.screens.questionsscreen
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -17,6 +18,10 @@ import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -30,20 +35,18 @@ import androidx.compose.ui.unit.sp
 import com.senwar.restarttask.R
 import com.senwar.restarttask.ui.theme.fontFamily
 
-@Preview(showSystemUi = true)
 @Composable
-fun SpecialCardItem(){
+fun SpecialCardItem(modifier: Modifier){
+
+
     Card (
         shape = RoundedCornerShape(15.dp),
         elevation = CardDefaults.cardElevation(10.dp),
-        modifier = Modifier
-            .size(width = 220.dp, height = 130.dp)
-            .padding(15.dp)
-
+        modifier =modifier
     ){
         Column (
             modifier = Modifier
-                .background(Color.LightGray)
+                .background(Color.White)
                 .fillMaxSize(),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.Start

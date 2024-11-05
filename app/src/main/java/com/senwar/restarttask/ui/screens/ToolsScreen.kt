@@ -26,28 +26,21 @@ fun ToolsScreen(){
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
-        Column(
+        Row (
             modifier = Modifier
-                .fillMaxSize(),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Row (
-                modifier = Modifier
-                    .padding(start = 25.dp, top = 50.dp),
-                horizontalArrangement = Arrangement.Start,
-                verticalAlignment = Alignment.Top
-            ){
-                com.senwar.restarttask.ui.Button()
-            }
-
-
-            Text(
-                text = "Tools Screen",
-                fontSize = 20.sp,
-                fontWeight = FontWeight.Bold,
-                color = Color.White
-            )
+                .padding(start = 25.dp, top = 50.dp),
+            horizontalArrangement = Arrangement.Start,
+            verticalAlignment = Alignment.Top
+        ){
+          //  com.senwar.restarttask.ui.Button()
         }
+
+
+        Text(
+            text = "Tools Screen",
+            fontSize = 20.sp,
+            fontWeight = FontWeight.Bold,
+            color = Color.White
+        )
     }
 }

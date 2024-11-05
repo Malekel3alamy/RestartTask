@@ -1,5 +1,6 @@
 package com.senwar.restarttask.ui.bottomnavigation
 
+import android.widget.Toast
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Icon
@@ -9,16 +10,19 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateMapOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.onGloballyPositioned
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
+import com.jetpack.showcaseview.ShowCaseView
 import com.senwar.restarttask.R
 import com.senwar.restarttask.ui.screens.ConnectScreen
 import com.senwar.restarttask.ui.screens.HomeScreen
@@ -26,10 +30,19 @@ import com.senwar.restarttask.ui.screens.ProfileScreen
 import com.senwar.restarttask.ui.screens.questionsscreen.QuestionsScreen
 import com.senwar.restarttask.ui.screens.ToolsScreen
 import com.senwar.restarttask.ui.theme.fontFamily
+import com.senwar.spotlight.ShowCaseProperty
 
 
 @Composable
 fun BottomNavigationBar(){
+
+    var navigationTutorialFinished by remember { mutableStateOf(false)
+    }
+
+    val context = LocalContext.current
+
+    val targets = remember { mutableStateMapOf<String, ShowCaseProperty>() }
+
     var selectedIndex  by remember {
         mutableStateOf(0)
     }
@@ -63,6 +76,16 @@ fun BottomNavigationBar(){
                          fontFamily = fontFamily,
                      )
                  },
+                 modifier = Modifier
+                     .onGloballyPositioned { coordinates ->
+                         targets[bottomNavItem.route] = ShowCaseProperty(
+                             bottomNavItem.index,
+                             coordinates,
+                             "navigation",
+                             bottomNavItem.contentDescription
+
+                         )
+                     }
 
              
              )
@@ -72,8 +95,22 @@ fun BottomNavigationBar(){
      }
  ){ innerPadding ->
 
- ContentScreen(modifier = Modifier.padding(innerPadding),selectedIndex)
+     ContentScreen(modifier = Modifier.padding(innerPadding),selectedIndex)
+
+     if (navigationTutorialFinished){
+         selectedIndex = 2
+         ContentScreen(selectedIndex = 2)
+     }
+
+     
+
+
+
  }
+    ShowCaseView(targets = targets) {
+        navigationTutorialFinished = true
+
+    }
 
 
 

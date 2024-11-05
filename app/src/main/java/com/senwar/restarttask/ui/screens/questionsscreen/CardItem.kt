@@ -39,7 +39,7 @@ fun CardItem(){
         modifier = Modifier
             .size(width = 220.dp, height = 130.dp)
             .padding(15.dp)
-            .background(Color.White),
+
 
 
 

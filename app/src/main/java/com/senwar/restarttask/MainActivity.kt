@@ -37,8 +37,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
 
-//            BottomNavigationBar(true)
-//            share(myValue = true)
+
             if (getShared()){
                 BottomNavigationBar(false)
             }else{

@@ -34,12 +34,14 @@ import androidx.compose.ui.unit.sp
 import com.jetpack.showcaseview.ShowCaseView
 import com.senwar.restarttask.R
 import com.senwar.restarttask.ui.ButtonFilter
+import com.senwar.restarttask.ui.bottomnavigation.ContentScreen
 import com.senwar.restarttask.ui.theme.fontFamily
 import com.senwar.spotlight.ShowCaseProperty
 
 @Composable
 fun QuestionsScreen(caseViewEnabled:Boolean) {
-    val context = LocalContext.current
+
+    var navigationTutorialFinished by remember { mutableStateOf(false) }
 
     val targets = remember { mutableStateMapOf<String, ShowCaseProperty>() }
 
@@ -107,14 +109,16 @@ fun QuestionsScreen(caseViewEnabled:Boolean) {
                }
            }
 
-
-
        }
+
    }
+
+    if (navigationTutorialFinished){
+        ContentScreen(caseViewEnabled,selectedIndex = 3)
+    }
     if (caseViewEnabled){
         ShowCaseView(targets = targets) {
-            Toast.makeText(context, "App Intro finished!", Toast.LENGTH_SHORT).show()
-
+            navigationTutorialFinished = true
         }
     }
 }

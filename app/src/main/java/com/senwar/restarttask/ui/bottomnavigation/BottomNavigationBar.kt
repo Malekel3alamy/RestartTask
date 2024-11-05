@@ -36,8 +36,7 @@ import com.senwar.spotlight.ShowCaseProperty
 @Composable
 fun BottomNavigationBar(caseViewEnabled:Boolean){
 
-    var navigationTutorialFinished by remember { mutableStateOf(false)
-    }
+    var navigationTutorialFinished by remember { mutableStateOf(false) }
 
     val context = LocalContext.current
 
@@ -124,7 +123,7 @@ fun ContentScreen(caseViewEnabled: Boolean,modifier: Modifier = Modifier, select
          0 -> HomeScreen()
          1 -> ConnectScreen()
          2 -> QuestionsScreen(caseViewEnabled )
-         3 -> ToolsScreen()
+         3 -> ToolsScreen(caseViewEnabled)
          4 -> ProfileScreen()
      }
 }
